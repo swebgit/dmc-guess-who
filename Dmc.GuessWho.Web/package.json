@@ -1,0 +1,41 @@
+{
+  "name": "dmc-guess-who",
+  "version": "0.1.0",
+  "description": "A web app that helps people learn the names of DMC employees",
+  "keywords": [],
+  "author": "",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": "7.1.0",
+    "npm":  "3.10.9" 
+  },
+  "dependencies": {
+    "@angular/common": "~2.2.0",
+    "@angular/compiler": "~2.2.0",
+    "@angular/core": "~2.2.0",
+    "@angular/forms": "~2.2.0",
+    "@angular/http": "~2.2.0",
+    "@angular/platform-browser": "~2.2.0",
+    "@angular/platform-browser-dynamic": "~2.2.0",
+    "@angular/router": "~3.2.0",
+    "@angular/upgrade": "~2.2.0",
+
+    "angular-in-memory-web-api": "~0.1.15",
+    "systemjs": "0.19.40",
+    "core-js": "^2.4.1",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "^0.6.26"
+  },
+  "devDependencies": {
+    "rimraf": "^2.5.4",
+    "@types/core-js": "^0.9.34",
+    "@types/node": "^6.0.46"
+  },
+  "repository": {}
+}

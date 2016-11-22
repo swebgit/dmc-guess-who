@@ -1,0 +1,37 @@
+﻿<div class="container-fluid">
+    <div class="row text-xs-center">
+        <div class="col-xs-12">
+            <h1 class="hidden-xs-down">DMC Guess Who?!<span *ngIf="isLoading"> (LOADING)</span></h1>
+            <h2 class="hidden-sm-up">DMC Guess Who?!<span *ngIf="isLoading"> (LOADING)</span></h2>
+        </div>
+    </div>
+    <div class="row text-xs-center" *ngIf="correctEmployee">
+        <div class="col-xs-12 alert element-margin-1" role="alert"
+             [class.alert-info]="currentState === guessState.NoGuess"
+             [class.alert-danger]="currentState === guessState.WrongGuess"
+             [class.alert-success]="currentState === guessState.CorrectGuess">
+            <strong>{{promptText}}</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="vertical-spacer-15">&nbsp;</div>
+    </div>
+    <div class="row text-xs-center" *ngIf="correctEmployee">
+        <div class="col-xs-12 employee-image">
+            <img src="{{currentState === guessState.CorrectGuess ? correctEmployee?.funImageUrl : correctEmployee?.normalImageUrl}}" class="img-fluid rounded-circle employee-image" alt="Who is this?" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="vertical-spacer-15">&nbsp;</div>
+    </div>
+    <div class="row text-xs-center">
+        <div *ngFor="let guessOption of guessOptions" class="col-xs-12 col-sm-6">
+            <button class="element-margin-1 btn btn-outline-primary" type="button" [disabled]="currentState === guessState.CorrectGuess" (click)="guess(guessOption.name)">{{guessOption.name}}</button>
+        </div>
+    </div>
+    <div class="row text-xs-center" [class.hidden-xs-up]="currentState !== guessState.CorrectGuess">
+        <div class="col-xs-12 col-sm-6 push-sm-3">
+            <button class="element-margin-1 btn btn-success" (click)="nextQuestion()">Next</button>
+        </div>
+    </div>
+</div>
