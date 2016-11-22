@@ -2,3 +2,8 @@
 node_modules
 
 *.suo
+/Dmc.GuessWho.Web/app/*.js
+/Dmc.GuessWho.Web/app/*.js.map
+/Dmc.GuessWho.Web/bin
+/Dmc.GuessWho.Web/obj
+/packages
