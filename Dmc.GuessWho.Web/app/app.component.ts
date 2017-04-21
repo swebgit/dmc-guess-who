@@ -13,13 +13,15 @@ export class AppComponent implements OnInit {
     guessState = GuessState;
     promptText: string;
     isLoading: boolean = false;
+    numberGuessOptions: number = 8;
+    numberToJumble: number = 2;
     currentState: GuessState;
     guessOptions: Employee[]; 
     correctEmployee: Employee;
     wrongGuessPrompts: string[] = ["Close..", "Wrong.", "How long have you worked here?", "Try again.",
         "Nope!", "Incorrect.", "Have you tried guessing the correct name?", "Looks like you're channeling your inner Ken!",
         "Guess again.", "That's not their name.", "Not that one.", "Almost.."];
-    correctGuessPrompts: string[] = ["Correct!", ":)", "Way to go!", "Well you had a 1/4 chance..", "Impressive!", "Yup.", "That's right!", "Wow!"]
+    correctGuessPrompts: string[] = ["Correct!", ":)", "Way to go!", "Lucky guess..", "Impressive!", "Yup.", "That's right!", "Wow!"]
 
     constructor(private employeeService: EmployeeService) {
         this.promptText = "";
@@ -45,10 +47,17 @@ export class AppComponent implements OnInit {
     nextQuestion(): void {
         this.isLoading = true;
         this.promptText = "Who is this?";
-        this.employeeService.getEmployees(4).then(employees => {
+        this.employeeService.getEmployees(this.numberGuessOptions + this.numberToJumble).then(employees => {
             this.guessOptions = employees
-            this.correctEmployee = this.guessOptions[Math.floor(Math.random() * employees.length)];
+            this.guessOptions.forEach((employee, index, array) => {
+                employee.nameToDisplay = employee.name;
+            });
+            let correctEmployeeIndex: number = Math.floor(Math.random() * this.numberGuessOptions);
+            this.correctEmployee = this.guessOptions[correctEmployeeIndex];
+            this.employeeService.jumbleNames(this.numberToJumble, this.numberGuessOptions, correctEmployeeIndex, this.guessOptions)
             this.currentState = GuessState.NoGuess;
+            //cull the extra jumble options
+            this.guessOptions.splice(this.numberGuessOptions);
             this.isLoading = false;
         });
 

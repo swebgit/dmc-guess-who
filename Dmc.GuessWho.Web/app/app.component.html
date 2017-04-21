@@ -26,7 +26,7 @@
     </div>
     <div class="row text-xs-center">
         <div *ngFor="let guessOption of guessOptions" class="col-xs-12 col-sm-6">
-            <button class="element-margin-1 btn btn-outline-primary" type="button" [disabled]="currentState === guessState.CorrectGuess" (click)="guess(guessOption.name)">{{guessOption.name}}</button>
+            <button class="element-margin-1 btn btn-outline-primary" type="button" [disabled]="currentState === guessState.CorrectGuess" (click)="guess(guessOption.name)">{{guessOption.nameToDisplay}}</button>
         </div>
     </div>
     <div class="row text-xs-center" [class.hidden-xs-up]="currentState !== guessState.CorrectGuess">
